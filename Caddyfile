@@ -1,0 +1,4 @@
+:80
+root * /app/public
+file_server
+php_fastcgi tsalpha:9000
