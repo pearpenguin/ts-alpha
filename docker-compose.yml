@@ -14,9 +14,12 @@ services:
   tsalpha:
     # avoid weird problems with container/host DNS resolver
     dns: 8.8.8.8
-    build: ./dockerfiles
+    build:
+      context: ./dockerfiles
+      args:
+        uid: "${HOST_UID}"
     image: tsalpha
-    user: "${UID_GID}"
+    user: "${HOST_UID}:${HOST_GID}"
     volumes:
       # Mount code in working dir
       - .:/app
