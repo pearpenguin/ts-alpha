@@ -1,11 +1,22 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## First time setup for development
+1. Ensure [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) are installed
+2. Clone this repo locally
+3. Build tsalpha image using the provided `dc` wrapper command (this will pass the current UID to avoid permission problems later)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+        ./dc build
+4. Create symbolic link to `.env.local` which contains default app settings
+
+        ln -s .env.local .env
+5. Install composer dependencies
+
+        docker run --rm --interactive --tty --volume $PWD:/app composer:2 composer install
+6. Run the docker images
+
+        ./dc up
+7. Run database migrations to setup database tables
+
+        ./dc exec tsalpha php artisan migrate
+8. Goto `localhost:8000` to test if the app is running
 
 ## About Laravel
 
