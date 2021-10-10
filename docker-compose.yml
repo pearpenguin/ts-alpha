@@ -35,7 +35,7 @@ services:
       MYSQL_USER: ts_alpha
       MYSQL_PASSWORD: ts_alpha
     volumes:
-      - db_data:/var/lib/db_data
+      - db_data:/var/lib/mysql
 
 volumes:
   web_data:
