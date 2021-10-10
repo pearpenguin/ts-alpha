@@ -1,4 +1,4 @@
-## First time setup for development
+## First time setup for local development
 1. Ensure [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) are installed
 2. Clone this repo locally
 3. Build tsalpha image using the provided `dc` wrapper command (this will pass the current UID to avoid permission problems later)
@@ -10,9 +10,12 @@
 5. Install composer dependencies
 
         docker run --rm --interactive --tty --volume $PWD:/app composer:2 composer install
-6. Run the docker images
+6. Run the docker images, and wait for database to finish init
 
         ./dc up
+7. Setup Laravel migration table
+
+        ./dc exec tsalpha php artisan migrate:install
 7. Run database migrations to setup database tables
 
         ./dc exec tsalpha php artisan migrate
