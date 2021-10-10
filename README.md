@@ -1,6 +1,9 @@
 ## First time setup for local development
 1. Ensure [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) are installed
 2. Clone this repo locally
+3. Create symbolic link to local docker-compose:
+
+        ln -s docker-compose.local.yml docker-compose.override.yml
 3. Build tsalpha image using the provided `dc` wrapper command (this will pass the current UID to avoid permission problems later)
 
         ./dc build

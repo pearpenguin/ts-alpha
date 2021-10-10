@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  web:
+    image: caddy:2.4.5
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/app
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      # persistent data for caddy
+      - web_data:/data
+
+  db:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ts_alpha
+      MYSQL_DATABASE: ts_alpha
+      MYSQL_USER: ts_alpha
+      MYSQL_PASSWORD: ts_alpha
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  web_data:
+  db_data:
