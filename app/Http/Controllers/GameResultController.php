@@ -6,6 +6,9 @@ use App\Models\GameResult;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+/**
+ * @group Game Results
+ */
 class GameResultController extends Controller
 {
     /**
@@ -19,7 +22,7 @@ class GameResultController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Record a game result
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

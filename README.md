@@ -24,6 +24,9 @@
         ./dc exec tsalpha php artisan migrate
 8. Goto `localhost:8000` to test if the app is running
 
+## API documentation
+We use [scribe](https://github.com/knuckleswtf/scribe) to automatically generate API documentation
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

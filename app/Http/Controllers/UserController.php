@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+/**
+ * @group Users
+ */
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Search for users
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        $request->validate([
+        $params = $request->validate([
             'q' => 'string',
         ]);
 
