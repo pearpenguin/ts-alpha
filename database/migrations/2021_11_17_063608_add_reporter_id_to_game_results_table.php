@@ -14,7 +14,7 @@ class AddReporterIdToGameResultsTable extends Migration
     public function up()
     {
         Schema::table('game_results', function (Blueprint $table) {
-            $table->unsignedBigInteger('reporter_id');
+            $table->unsignedBigInteger('reporter_id')->nullable();
             $table->foreign('reporter_id')->references('id')->on('users');
         });
     }
