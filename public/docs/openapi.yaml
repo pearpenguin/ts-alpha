@@ -1,0 +1,161 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/game-results:
+    post:
+      summary: 'Record a game result'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Game Results'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                game_type:
+                  type: string
+                  description: ''
+                  example: velit
+                game_code:
+                  type: string
+                  description: ''
+                  example: ratione
+                game_winner:
+                  type: string
+                  description: ''
+                  example: ipsa
+                end_turn:
+                  type: integer
+                  description: ''
+                  example: 14
+                end_mode:
+                  type: string
+                  description: ''
+                  example: necessitatibus
+                game_date:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2021-11-17T09:49:22'
+                usa_player_id:
+                  type: string
+                  description: ''
+                  example: qui
+                ussr_player_id:
+                  type: string
+                  description: ''
+                  example: accusantium
+                video1:
+                  type: string
+                  description: 'Must be a valid URL.'
+                  example: 'http://www.brown.com/est-aut-aut-dicta-velit-possimus-expedita'
+                video2:
+                  type: string
+                  description: 'Must be a valid URL.'
+                  example: 'http://russel.com/eos-occaecati-culpa-nulla-libero.html'
+                video3:
+                  type: string
+                  description: 'Must be a valid URL.'
+                  example: 'http://www.kunde.com/ut-sunt-velit-hic-necessitatibus'
+              required:
+                - game_type
+                - game_code
+                - game_winner
+                - end_turn
+                - end_mode
+                - game_date
+                - usa_player_id
+                - ussr_player_id
+      security: []
+  /api/users:
+    get:
+      summary: 'Search for users'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  meta:
+                    current_page: 1
+                    from: null
+                    to: null
+                    per_page: 15
+                    last_page: 1
+                    total: 0
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  meta:
+                    type: object
+                    example:
+                      current_page: 1
+                      from: null
+                      to: null
+                      per_page: 15
+                      last_page: 1
+                      total: 0
+      tags:
+        - Users
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                q:
+                  type: string
+                  description: ''
+                  example: repudiandae
+      security: []
+tags:
+  -
+    name: 'Game Results'
+    description: ''
+  -
+    name: Users
+    description: ''
