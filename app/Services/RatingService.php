@@ -26,8 +26,8 @@ class RatingService
     public function calcNewRatings(int $winnerRating, int $loserRating): array
     {
         $delta = round(($loserRating - $winnerRating) * 0.05) + 100;
-        $delta = min($delta, 1);
-        $delta = max($delta, 200);
+        $delta = max($delta, 1);
+        $delta = min($delta, 200);
         $newWinnerRating = $winnerRating + $delta;
         $newLoserRating = $loserRating - $delta;
 
@@ -51,7 +51,7 @@ class RatingService
     public function calcNewRatingsForTie(int $ratingA, int $ratingB): array
     {
         $delta = round(($ratingA - $ratingB) * 0.05);
-        $delta = max($delta, 200);
+        $delta = min($delta, 200);
 
         $newRatingA = $ratingA - $delta;
         $newRatingB = $ratingB + $delta;
