@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\GameResult;
 use App\Models\User;
+use App\Services\RatingService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @group Game Results
  */
 class GameResultController extends Controller
 {
+    protected function getRatingService(): RatingService
+    {
+        return resolve(RatingService::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,10 +50,17 @@ class GameResultController extends Controller
             'video3' => 'url',
         ]);
 
-        $result = new GameResult($inputs);
-        // TODO: reporter_id is the user making the request
-        $result->reported_at = now();
-        $result->save();
+        $result = DB::transaction(function () use ($inputs) {
+            $result = new GameResult($inputs);
+            // TODO: reporter_id is the user making the request
+            $result->reported_at = now();
+            $result->save();
+
+            // Just update stats synchronously for now
+            $this->getRatingService()->updateRatings($result);
+
+            return $result;
+        });
 
         return $this->serializeEntity($result->toArray());
     }
