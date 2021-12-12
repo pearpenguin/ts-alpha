@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateUserGameStatsTable extends Migration
@@ -26,6 +27,15 @@ class CreateUserGameStatsTable extends Migration
             $table->integer('ussr_victories')->default(0);
             $table->integer('ussr_losses')->default(0);
             $table->integer('ussr_ties')->default(0);
+        });
+
+        // Insert a stat row for each existing user
+        DB::table('users')->orderBy('id')->each(function ($user) {
+            DB::table('user_game_stats')->insert([
+                'player_id' => $user->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
         });
     }
 
